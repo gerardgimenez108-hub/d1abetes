@@ -13,6 +13,8 @@ interface AppContextType {
   mealEntries: MealEntry[];
   insulinEntries: InsulinEntry[];
   goals: DailyGoal[];
+  theme: 'light' | 'dark';
+  toggleTheme: () => void;
   addGlucose: (entry: Omit<GlucoseEntry, 'id'>) => Promise<void>;
   addMeal: (entry: Omit<MealEntry, 'id'>) => Promise<void>;
   addInsulin: (entry: Omit<InsulinEntry, 'id'>) => Promise<void>;
@@ -28,6 +30,16 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [mealEntries, setMealEntries] = useState<MealEntry[]>([]);
   const [insulinEntries, setInsulinEntries] = useState<InsulinEntry[]>([]);
   const [goals, setGoals] = useState<DailyGoal[]>([]);
+  const [theme, setTheme] = useState<'light' | 'dark'>((localStorage.getItem('theme') as 'light' | 'dark') || 'light');
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'light' ? 'dark' : 'light');
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -131,6 +143,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   return (
     <AppContext.Provider value={{ 
       user, loading, glucoseEntries, mealEntries, insulinEntries, goals, 
+      theme, toggleTheme,
       addGlucose, addMeal, addInsulin, updateGoal 
     }}>
       {children}

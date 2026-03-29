@@ -1,5 +1,6 @@
 import React from 'react';
 import { LayoutDashboard, Utensils, BookOpen, BarChart3, Settings as SettingsIcon } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface BottomNavProps {
   activeTab: string;
@@ -16,19 +17,18 @@ const BottomNav: React.FC<BottomNavProps> = ({ activeTab, setActiveTab }) => {
   ];
 
   return (
-    <nav className="glass" style={{
+    <nav className="glass-panel" style={{
       position: 'fixed',
-      bottom: 0,
-      left: 0,
-      right: 0,
-      height: '80px',
+      bottom: '16px',
+      left: '16px',
+      right: '16px',
+      height: '70px',
       display: 'flex',
       justifyContent: 'space-around',
       alignItems: 'center',
       paddingBottom: 'env(safe-area-inset-bottom)',
       zIndex: 1000,
-      borderRadius: '24px 24px 0 0',
-      borderTop: '1px solid rgba(255,255,255,0.3)'
+      borderRadius: '24px',
     }}>
       {tabs.map((tab) => {
         const Icon = tab.icon;
@@ -38,20 +38,39 @@ const BottomNav: React.FC<BottomNavProps> = ({ activeTab, setActiveTab }) => {
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             style={{
+              position: 'relative',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               background: 'none',
-              color: isActive ? 'var(--primary)' : 'var(--text-light)',
+              color: isActive ? 'var(--primary)' : 'var(--text-muted)',
               padding: '8px',
-              gap: '4px',
-              fontSize: '0.75rem',
+              gap: '2px',
+              fontSize: '0.7rem',
               border: 'none',
-              transform: 'none'
+              boxShadow: 'none',
+              transition: 'color 0.3s ease'
             }}
           >
-            <Icon size={isActive ? 28 : 24} />
-            <span>{tab.label}</span>
+            {isActive && (
+              <motion.div
+                layoutId="activeTab"
+                className="active-bg"
+                style={{
+                  position: 'absolute',
+                  top: '0',
+                  bottom: '0',
+                  left: '0',
+                  right: '0',
+                  backgroundColor: 'var(--accent-glow)',
+                  borderRadius: '16px',
+                  zIndex: -1,
+                }}
+                transition={{ type: 'spring', duration: 0.5 }}
+              />
+            )}
+            <Icon size={22} strokeWidth={isActive ? 2.5 : 2} />
+            <span style={{ fontWeight: isActive ? 700 : 500 }}>{tab.label}</span>
           </button>
         );
       })}
