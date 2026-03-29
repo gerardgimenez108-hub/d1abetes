@@ -1,0 +1,26 @@
+[
+  {
+    "id": "intro",
+    "title": "¿Qué es la Diabetes Tipo 1?",
+    "content": "La diabetes tipo 1 es una enfermedad autoinmune en la que el sistema inmunitario ataca las células que producen insulina. Se necesita administración diaria de insulina para vivir.",
+    "source": "NIDDK (NIH) - Guía para personas con diabetes"
+  },
+  {
+    "id": "hypo",
+    "title": "Baja de azúcar (Hipoglucemia)",
+    "content": "Si tu glucemia es menor a 70 mg/dL, sigue la REGLA 15-15:\n1. Toma 15g de carbohidratos rápidos (medio vaso de zumo o 3 terrones de azúcar).\n2. Espera 15 minutos y vuelve a medir.\n3. Si sigue baja, repite. Si es normal, toma un snack pequeño si falta mucho para la comida.",
+    "source": "NIDDK (NIH) - Guía para personas con diabetes"
+  },
+  {
+    "id": "feet",
+    "title": "Cuidado de los Pies",
+    "content": "Revisa tus pies a diario en busca de cortes, ampollas, manchas rojas o hinchazón. Mantener la glucemia en rango ayuda a prevenir problemas de sensibilidad (neuropatía).",
+    "source": "American Diabetes Association (ADA)"
+  },
+  {
+    "id": "carbs",
+    "title": "Conteo de Carbohidratos",
+    "content": "Mantener una ingesta constante de carbohidratos ayuda a que las dosis fijas de insulina funcionen de manera predecible.",
+    "source": "Fast Facts: Type 1 Diabetes in Adults, 2021"
+  }
+]
